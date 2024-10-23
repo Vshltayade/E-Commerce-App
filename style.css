@@ -1,0 +1,10 @@
+main{
+    background-image: url('./Assets/main.png.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 80vh;
+}
+main div {
+    height: 100%;
+}
