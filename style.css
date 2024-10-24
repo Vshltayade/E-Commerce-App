@@ -14,3 +14,19 @@ main{
 main div {
     height: 100%;
 }
+
+#mens-products{
+    display: none;
+}
+
+#womens-products{
+    display: none;
+}
+
+#jewelery-products{
+    display: none;
+}
+
+#electronic-products{
+    display: none;
+}
