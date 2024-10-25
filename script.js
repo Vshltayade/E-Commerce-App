@@ -31,11 +31,19 @@ function displayProducts(a,b,c,d,e){
     
 }
 
+console.log(localStorage);
+// localStorage.clear();
+
 function addToCart(e, product) {
-    e.preventDefault()
-    // if(localStorage.getItem(product.id)) console.log(product);
-    // localStorage.setItem(product.id, product);
+  e.preventDefault()
+  if(localStorage.getItem(product.id)) {
     
+  }else{
+    
+  }
+  let str = JSON.stringify(product);
+  
+  localStorage.setItem(product.id, str);
     
 }
 
