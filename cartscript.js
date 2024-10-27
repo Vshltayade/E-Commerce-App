@@ -3,7 +3,9 @@ const emptyCart = document.getElementById('empty-cart');
 const productCart = document.getElementById('product-cart');
 const cartItems = document.getElementById('cart-items');
 const cardEx = document.getElementById('one-card');
-
+const productItems = document.querySelector('#total-product-n-price p:first-child span');
+const productItemsPrice = document.querySelector('#total-product-n-price p:last-child span');
+const totalPrice = document.querySelector('#total-price p:last-child span');
 
 // check if cart empty
 if(localStorage.length) {
@@ -15,6 +17,7 @@ else {
     emptyCart.style.display = 'block';
     productCart.style.display = 'none';
 }
+
 
 
 console.log(localStorage);
@@ -45,6 +48,7 @@ function reduceProductCount(obj,card){
     obj.count--;
     if(!obj.count) {
         localStorage.removeItem(obj.id);
+        calculatePrice()
         window.location.reload();
         return
     }
@@ -52,7 +56,7 @@ function reduceProductCount(obj,card){
     card.children.item(0).children.item(2).children.item(1).children.item(0).children.item(0).innerText = obj.count;
     localStorage.setItem(obj.id, JSON.stringify(obj));
     console.log(localStorage.getItem(obj.id), obj,card);
-    
+    calculatePrice();
 }
 
 
@@ -62,5 +66,22 @@ function increaseProductCount(obj,card){
     card.children.item(0).children.item(2).children.item(1).children.item(0).children.item(0).innerText = obj.count;
     localStorage.setItem(obj.id, JSON.stringify(obj));
     console.log(localStorage.getItem(obj.id), obj,card);
-    
+    calculatePrice();
 }
+
+
+function calculatePrice(){
+    //totalprice
+    let overallPrice = 30;
+    productItems.innerText = localStorage.length;
+    for(let key in localStorage){
+        if(key.length<=2){
+            let obj = JSON.parse(localStorage[key]);
+            overallPrice += obj.price * obj.count;
+            totalPrice.innerText = overallPrice.toFixed(2);
+            productItemsPrice.innerText = (overallPrice-30).toFixed(2);
+        }
+    }
+}
+
+calculatePrice();
