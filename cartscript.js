@@ -28,6 +28,8 @@ function displayInCart(){
             card.children.item(0).children.item(0).children.item(0).setAttribute('src', obj.image);
             card.children.item(0).children.item(1).children.item(0).children.item(0).innerText = obj.title;
             card.children.item(0).children.item(2).children.item(1).children.item(0).children.item(1).innerText = '$'+obj.price;
+            card.children.item(0).children.item(2).children.item(0).children.item(1).innerText = obj.count;
+            card.children.item(0).children.item(2).children.item(1).children.item(0).children.item(0).innerText = obj.count;
             cartItems.appendChild(card);
             
         }

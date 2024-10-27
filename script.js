@@ -37,9 +37,15 @@ console.log(localStorage);
 function addToCart(e, product) {
   e.preventDefault()
   if(localStorage.getItem(product.id)) {
+    let obj = JSON.parse(localStorage.getItem(product.id))
+    obj.count++;
+    localStorage.setItem(product.id, JSON.stringify(obj));
+    console.log(localStorage.getItem(product.id),obj.count);
     
+    localStorage.setItem(product.id, localStorage.getItem(product.id));
+    return
   }else{
-    
+    product.count = 1;
   }
   let str = JSON.stringify(product);
   
