@@ -93,9 +93,9 @@
                     </button>
                   </a>
                   <a href="cart.html">
-                    <button class="btn btn-outline-dark mx-2 my-1">
+                    <button class="btn btn-outline-dark mx-2 my-1" id="cart-btn">
                       <i class="fa-solid fa-cart-shopping px-1"></i>
-                      Cart (0)
+                      Cart (<span id="cart-count"></span>)
                     </button>
                   </a>
                 </div>
@@ -156,5 +156,17 @@
         </div>
       </footer>
     </div>
+
+    <script>
+      const cartBtn = document.getElementById('cart-btn');
+      document.getElementById('cart-count').innerText = localStorage.length;
+      if(localStorage.length) {
+        cartBtn.classList.remove('btn-outline-dark');
+        cartBtn.classList.add('btn-dark');
+      }
+      else{
+        if(cartBtn.classList.contains('btn-dark')) cartBtn.classList.add('btn-outline-dark')
+      }
+    </script>
   </body>
 </html>

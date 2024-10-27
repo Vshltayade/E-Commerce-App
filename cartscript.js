@@ -3,6 +3,9 @@ const emptyCart = document.getElementById('empty-cart');
 const productCart = document.getElementById('product-cart');
 const cartItems = document.getElementById('cart-items');
 const cardEx = document.getElementById('one-card');
+const cartBtn = document.getElementById('cart-btn');
+const cartCount = document.getElementById('cart-count');
+const checkOut = document.getElementById('check-out');
 const productItems = document.querySelector('#total-product-n-price p:first-child span');
 const productItemsPrice = document.querySelector('#total-product-n-price p:last-child span');
 const totalPrice = document.querySelector('#total-price p:last-child span');
@@ -19,9 +22,12 @@ else {
 }
 
 
+// cartcount header
+cartCount.innerText = localStorage.length;
 
-console.log(localStorage);
+// console.log(localStorage);
 
+// product cart list items
 function displayInCart(){
     for(let keys in localStorage){
         if(keys.length <= 2){
@@ -43,7 +49,7 @@ function displayInCart(){
     }
 }
 
-
+// -- product
 function reduceProductCount(obj,card){
     obj.count--;
     if(!obj.count) {
@@ -55,21 +61,21 @@ function reduceProductCount(obj,card){
     card.children.item(0).children.item(2).children.item(0).children.item(1).innerText = obj.count;
     card.children.item(0).children.item(2).children.item(1).children.item(0).children.item(0).innerText = obj.count;
     localStorage.setItem(obj.id, JSON.stringify(obj));
-    console.log(localStorage.getItem(obj.id), obj,card);
+    // console.log(localStorage.getItem(obj.id), obj,card);
     calculatePrice();
 }
 
-
+// ++ product
 function increaseProductCount(obj,card){
     obj.count++;
     card.children.item(0).children.item(2).children.item(0).children.item(1).innerText = obj.count;
     card.children.item(0).children.item(2).children.item(1).children.item(0).children.item(0).innerText = obj.count;
     localStorage.setItem(obj.id, JSON.stringify(obj));
-    console.log(localStorage.getItem(obj.id), obj,card);
+    // console.log(localStorage.getItem(obj.id), obj,card);
     calculatePrice();
 }
 
-
+//calculate order
 function calculatePrice(){
     //totalprice
     let overallPrice = 30;
@@ -85,3 +91,8 @@ function calculatePrice(){
 }
 
 calculatePrice();
+
+//ckeckout
+checkOut.addEventListener('click', () => {
+    localStorage.clear();
+})
